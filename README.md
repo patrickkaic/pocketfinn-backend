@@ -1,39 +1,47 @@
-# pocketfinn-backend
+## PocketFinn Backend
 
 Backend para um aplicativo de finanças pessoais com entrada inteligente via linguagem natural (chatbot).
 
-🚧 Status: Em desenvolvimento — funcionalidades principais ainda em evolução.
+🚧 **Status:** Em desenvolvimento — funcionalidades principais ainda em evolução.
 
-📌 Visão Geral
+---
 
-Este projeto fornece uma API REST para:
+## 📌 Visão Geral
 
-Registrar despesas manualmente
-Listar despesas por usuário
-Interpretar mensagens em linguagem natural e convertê-las em dados estruturados
+O **PocketFinn Backend** fornece uma API REST para gerenciamento de despesas pessoais, com foco em reduzir fricção no input de dados utilizando linguagem natural.
 
-A proposta central é reduzir fricção no input financeiro usando IA.
+Principais capacidades:
 
-🧠 Chatbot (IA)
+- Registro manual de despesas  
+- Listagem de despesas por usuário  
+- Interpretação de mensagens em linguagem natural → dados estruturados  
 
-O sistema utiliza um modelo LLM (via Groq API) para transformar textos como:
+---
 
+## 🧠 Chatbot (IA)
+
+O sistema utiliza um modelo LLM (via Groq API) para transformar entradas como:
 "Gastei 50 reais com almoço"
+Em:
 
-em:
-
+```json
 {
   "amount": 50,
   "category": "food",
   "description": "almoço"
 }
+```
+
+
 🛠️ Stack Tecnológica
 Node.js
 Express
 Supabase (PostgreSQL)
 Groq SDK (LLM)
 dotenv
-📂 Estrutura do Projeto
+
+
+Estrutura do Projeto
 src/
   routes/
     expenses.js
@@ -41,12 +49,14 @@ src/
   services/
     groq.js
     supabase.js
+
 ⚙️ Funcionalidades
 ✅ Implementadas
 Criação de despesas
 Listagem de despesas por usuário
 Extração de dados financeiros via IA
 Integração com Supabase
+
 🚧 Em desenvolvimento
 Validação de dados
 Autenticação
@@ -54,8 +64,8 @@ Persistência automática via chatbot
 Tratamento de erros da IA
 📡 Endpoints
 ➤ Criar despesa
-POST /expenses
 
+POST /expenses
 Body:
 
 {
@@ -64,11 +74,12 @@ Body:
   "description": "almoço",
   "category": "food"
 }
+
 ➤ Listar despesas por usuário
 GET /expenses/:user_id
+
 ➤ Processar mensagem (IA)
 POST /message
-
 Body:
 
 {
@@ -85,6 +96,8 @@ Resposta:
     "description": "uber"
   }
 }
+
+
 🔌 Integrações
 Supabase
 
@@ -93,7 +106,6 @@ Responsável pelo armazenamento das despesas.
 Tabela esperada: expenses
 
 Campos:
-
 user_id
 amount
 description
@@ -117,8 +129,9 @@ cd seu-repo
 npm install
 
 npm run dev
+
 ⚠️ Limitações Atuais
 Sem autenticação
-Possível retorno inválido da IA (JSON pode quebrar)
+Possível retorno inválido da IA (JSON inconsistente)
 Sem validação de entrada
 Categorias não padronizadas
